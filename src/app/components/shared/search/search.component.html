@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+
+    <div id="contiene" class="container justify-content-center">
+        <div class="row rowcontainer">
+            <div class="row" *ngFor="let pelicula of listilla">
+                <div class="col">
+                    <div class="card " style="width: 18rem;">
+                        <img src="https://image.tmdb.org/t/p/w500{{pelicula.poster_path}}" class="card-img-top" placement="bottom" ngbTooltip="Popularidad:{{pelicula.popularity}} N°Votos:{{pelicula.vote_count}} Valoración: {{pelicula.vote_average}}" tooltipClass="my-custom-class"
+                            (click)="funcionmodal(content, pelicula.id)">
+                        <div class="card-body">
+                            <h4 class="card-title"> {{pelicula.title}}</h4>
+                            <p class="card-text">
+                                Fecha de estreno: {{pelicula.release_date | date:'dd/MM/yyyy'}}
+                            </p>
+                            <p class="card-text contenido">{{pelicula.overview}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #content let-modal>
+        <div class="modal-header">
+
+            <h4 class="modal-title"></h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="modal-body">
+            <div id="titulo" *ngFor="let peliculauno of peliuno">
+
+                <h3>{{peliculauno.title}}</h3>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-4"><img style="width:70%;" src="https://image.tmdb.org/t/p/w500{{peliculauno.poster_path}}"></div>
+                    <div class="col-md-8">
+                        <small><p>Título original: {{peliculauno.original_title}}</p></small>
+                        <p>Descripción: {{peliculauno.overview}}</p>
+                        <p>Fecha de Lanzamiento: {{peliculauno.release_date}}</p>
+                        <p>Popularidad: {{peliculauno.popularity}}</p>
+                        <p>N° Votos: {{peliculauno.vote_count}}</p>
+                        <p>Promedio Votos: {{peliculauno.vote_average}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+
+        </div>
+    </ng-template>
+
+
+
+</body>
+
+
+</html>
